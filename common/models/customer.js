@@ -4,22 +4,22 @@ module.exports = function(Customer) {
 
     //remote methods
     Customer.remoteMethod(
-        'getNameLike',
+        'getNameCustomer',
         {
-            description: 'get name like',
+            description: 'get name customer',
             accepts: [
                 { arg: 'firstname', type: 'string'}
             ],
             returns:{
                 arg: 'res', type:'object', root: true
             },
-            http: { path: '/getNameLike', verb: 'get' }
+            http: { path: '/getNameCustomer', verb: 'get' }
         }
     );
 
-    //function getNameLike -> get name with firstname param
+    //function getNameCustomer -> get name with param
 
-    Customer.getNameLike = function(firstname, callback){
+    Customer.getNameCustomer = function(firstname, callback){
         new Promise(function(resolve, reject){
 
             //query filter variable
@@ -49,30 +49,30 @@ module.exports = function(Customer) {
         });
     }
 
-    /* Customer.remoteMethod(
-        'getLastName',
+    Customer.remoteMethod(
+        'getId',
         {
-            description: 'get last name like',
+            description: 'get id like',
             accepts: [
-                { arg: 'lastname', type: 'string'}
+                { arg: 'id', type: 'string'}
             ],
             returns:{
                 arg: 'res', type:'object', root: true
             },
-            http: { path: '/getLastName', verb: 'get' }
+            http: { path: '/getId', verb: 'get' }
         }
     );
 
-    Customer.getLastName = function(lastname, callback){
+    Customer.getId = function(id, callback){
         new Promise(function(resolve, reject){
             var filter = {
                 where: {
-                    lastname : {
-                        like : lastname
+                    id : {
+                        like : id
                     }
                 }
             }
-            Customer.find(filter, function(err, result){
+            Customer.findById(filter, function(err, result){
                 if(err) reject (err)
                 if(result === null){
                     err = new Error ("Nama Akhir Tidak Dapat Ditemukan")
@@ -87,5 +87,5 @@ module.exports = function(Customer) {
         }).catch(function(err){
             callback(err);
         });
-    }*/
+    }
 };
