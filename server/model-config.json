@@ -46,5 +46,9 @@
   "Commodity": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "Transaction": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }
