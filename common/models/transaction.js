@@ -49,6 +49,7 @@ module.exports = function(Transaction) {
         });
     }
 
+    
     Transaction.remoteMethod(
         'getId',
         {
@@ -65,14 +66,41 @@ module.exports = function(Transaction) {
 
     Transaction.getId = function(id, callback){
         new Promise(function(resolve, reject){
-            var filter = {
-                where: {
-                    id : {
-                        like : id
-                    }
+            Transaction.findById(id, function(err, result){
+                if(err) reject (err)
+                if(result === null){
+                    err = new Error ("Nama Akhir Tidak Dapat Ditemukan")
+                    err.statusCode = 404
+                    reject (err)
                 }
-            }
-            Transaction.findById(filter, function(err, result){
+                resolve(result)
+            })
+        }).then(function(res){
+            if (!res) callback (err)
+            return callback (null, res)
+        }).catch(function(err){
+            callback(err);
+        });
+    }
+
+
+    Transaction.remoteMethod(
+        'getCategory',
+        {
+            description: 'get category like',
+            accepts: [
+                { arg: 'category', type: 'string'}
+            ],
+            returns:{
+                arg: 'res', type:'object', root: true
+            },
+            http: { path: '/getCategory', verb: 'get' }
+        }
+    );
+    Transaction.get = function(category, callback){
+        new Promise(function(resolve, reject){
+            
+            Transaction.findByCategory(category, function(err, result){
                 if(err) reject (err)
                 if(result === null){
                     err = new Error ("Nama Akhir Tidak Dapat Ditemukan")

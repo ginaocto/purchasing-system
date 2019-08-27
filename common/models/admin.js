@@ -49,6 +49,7 @@ module.exports = function(Admin) {
         });
     }
 
+
     Admin.remoteMethod(
         'getId',
         {
@@ -65,14 +66,8 @@ module.exports = function(Admin) {
 
     Admin.getId = function(id, callback){
         new Promise(function(resolve, reject){
-            var filter = {
-                where: {
-                    id : {
-                        like : id
-                    }
-                }
-            }
-            Admin.findById(filter, function(err, result){
+            
+            Admin.findById(id, function(err, result){
                 if(err) reject (err)
                 if(result === null){
                     err = new Error ("Nama Akhir Tidak Dapat Ditemukan")
