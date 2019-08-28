@@ -1,0 +1,37 @@
+{
+  "name": "project",
+  "plural": "project",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "projectName": {
+      "type": "string"
+    },
+    "capacity": {
+      "type": "number"
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "status": {
+      "type": "string"
+    },
+    "paymentStatus": {
+      "type": "string"
+    },
+    "createAt": {
+      "type": "date",
+      "defaultFn": "now"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
