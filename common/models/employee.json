@@ -25,7 +25,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "project": {
+      "type": "belongsTo",
+      "model": "Project",
+      "foreignKey": "employeeId"
+    },
+    "roles": {
+      "type": "hasMany",
+      "model": "Roles",
+      "foreignKey": "employeeId"
+    }
+  },
   "acls": [],
   "methods": {}
 }

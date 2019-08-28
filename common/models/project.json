@@ -31,7 +31,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "employee": {
+      "type": "hasMany",
+      "model": "Employee",
+      "foreignKey": "projectId"
+    }
+  },
   "acls": [],
   "methods": {}
 }
