@@ -49,7 +49,7 @@ module.exports = function(Transaction) {
         });
     }
 
-    
+
     Transaction.remoteMethod(
         'getId',
         {
@@ -97,10 +97,18 @@ module.exports = function(Transaction) {
             http: { path: '/getCategory', verb: 'get' }
         }
     );
-    Transaction.get = function(category, callback){
+    Transaction.getCategory = function(category, callback){
         new Promise(function(resolve, reject){
             
-            Transaction.findByCategory(category, function(err, result){
+            //query filter variable
+            var filter = {
+                where: {
+                    category : {
+                        like : category
+                    }
+                }
+            }
+            Transaction.find(filter, function(err, result){
                 if(err) reject (err)
                 if(result === null){
                     err = new Error ("Nama Akhir Tidak Dapat Ditemukan")

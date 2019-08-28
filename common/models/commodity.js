@@ -95,10 +95,18 @@ module.exports = function(Commodity) {
             http: { path: '/getCategory', verb: 'get' }
         }
     );
-    Commodity.get = function(category, callback){
+    Commodity.getCategory = function(category, callback){
         new Promise(function(resolve, reject){
             
-            Commodity.findByCategory(category, function(err, result){
+            //query filter variable
+            var filter = {
+                where: {
+                    category : {
+                        like : category
+                    }
+                }
+            }
+            Commodity.find(filter, function(err, result){
                 if(err) reject (err)
                 if(result === null){
                     err = new Error ("Nama Akhir Tidak Dapat Ditemukan")
