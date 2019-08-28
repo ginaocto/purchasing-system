@@ -50,5 +50,9 @@
   "Transaction": {
     "dataSource": "mongodb",
     "public": true
+  },
+  "employee": {
+    "dataSource": "mongodb",
+    "public": true
   }
 }
